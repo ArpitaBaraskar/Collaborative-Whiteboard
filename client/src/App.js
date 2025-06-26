@@ -11,7 +11,7 @@ function App() {
   const [isConnected, setIsConnected] = useState(false);
 
   useEffect(() => {
-    const newSocket = io(process.env.REACT_APP_SERVER_URL || 'http://localhost:5000', {
+    const newSocket = io(process.env.REACT_APP_API_URL || 'http://localhost:5000', {
       withCredentials: true,
       transports: ['websocket', 'polling']
     });
@@ -35,7 +35,7 @@ function App() {
 
   const joinRoom = async (roomId) => {
     try {
-      const serverUrl = process.env.REACT_APP_SERVER_URL || 'http://localhost:5000';
+      const serverUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
       const response = await axios.post(`${serverUrl}/api/rooms/join`, { roomId });
       
       if (response.data.success) {
